@@ -11,7 +11,7 @@ namespace Trafikverket_API
     public class Get
     {
 
-        public static XmlDocument GetStations()
+        public static XmlDocument Stations()
         {
             return HttpPost(@"
                             <ORIONML version='1.0'>
@@ -21,7 +21,7 @@ namespace Trafikverket_API
                             </ORIONML>");
         }
 
-        public static XmlDocument GetMessages()
+        public static XmlDocument Messages()
         {
             return HttpPost(@"
                             <ORIONML version='1.0'>
@@ -31,7 +31,7 @@ namespace Trafikverket_API
                             </ORIONML>");
         }
 
-        public static XmlDocument GetTrafikinfo()
+        public static XmlDocument Trafikinfo()
         {
             return HttpPost(@"
                             <ORIONML version='1.0'>
