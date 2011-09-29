@@ -1,13 +1,13 @@
-# .Net Class Library för att hämta data från Trafikverkets inofficiella API/Webservice
+ï»¿# .Net Class Library fÃ¶r att hÃ¤mta data frÃ¥n Trafikverkets inofficiella API/Webservice
 
-Använd denna kod för att antingen skapa en DLL som du sedan inkluderar i dina projekt eller inkludera hela projektet och hämta data från Trafikverkets inofficiella API/Webservice med ditt .Net projekt.
+AnvÃ¤nd denna kod fÃ¶r att antingen skapa en DLL som du sedan inkluderar i dina projekt eller inkludera hela projektet och hÃ¤mta data frÃ¥n Trafikverkets inofficiella API/Webservice med ditt .Net projekt.
 
-Använd koden som du vill, men du får gärna länka till detta repo på ett.
+AnvÃ¤nd koden som du vill, men du fÃ¥r gÃ¤rna lÃ¤nka till detta repo pÃ¥ ett.
 
-## Varför har jag gjort detta?
+## VarfÃ¶r har jag gjort detta?
 
-Till att börja med så är jag trött på att Trafikverket och SJ vägrar släppa ett API öppet även när dem släpper en ny sida hos dem där dem använder en webservice som vem som helst kan komma åt så vägrar dem ge information och öppna up det till alla.
+Till att bÃ¶rja med sÃ¥ Ã¤r jag trÃ¶tt pÃ¥ att Trafikverket och SJ vÃ¤grar slÃ¤ppa ett API Ã¶ppet Ã¤ven nÃ¤r dem slÃ¤pper en ny sida hos dem dÃ¤r dem anvÃ¤nder en webservice som vem som helst kan komma Ã¥t sÃ¥ vÃ¤grar dem ge information och Ã¶ppna up det till alla.
 
-Det var Erik Pettersson (ptz0n) som skrev ett bra innehållsrikt blogg inlägg om Trafikverkets nya webservice som fick mig att fundera på att börja använda det, läsa hans tekniska blogg inlägg om det här: http://tagtider.net/blogg/tjanster/trafikverket-exponerar-api/
+Det var Erik Pettersson (ptz0n) som skrev ett bra innehÃ¥llsrikt blogg inlÃ¤gg om Trafikverkets nya webservice som fick mig att fundera pÃ¥ att bÃ¶rja anvÃ¤nda det, lÃ¤sa hans tekniska blogg inlÃ¤gg om det hÃ¤r: http://tagtider.net/blogg/tjanster/trafikverket-exponerar-api/
 
-Sen kom jag i kontakt med @jope som ville att vi skulle försöka hjälpas åt att göra en wrapper i .Net och på den vägen är det.
+Sen kom jag i kontakt med @jope som ville att vi skulle fÃ¶rsÃ¶ka hjÃ¤lpas Ã¥t att gÃ¶ra en wrapper i .Net och pÃ¥ den vÃ¤gen Ã¤r det.
