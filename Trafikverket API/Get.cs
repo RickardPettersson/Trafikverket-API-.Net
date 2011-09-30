@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System.IO;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace Trafikverket_API
 {
@@ -13,12 +14,29 @@ namespace Trafikverket_API
 
         public static XmlDocument Stations()
         {
-            return HttpPost(@"
+            XmlDocument doc = HttpPost(@"
                             <ORIONML version='1.0'>
                                 <REQUEST plugin='KartDB'>
                                     <PLUGINML table='Stations'></PLUGINML>
                                 </REQUEST>
                             </ORIONML>");
+
+
+            XmlSerializer ser = new XmlSerializer(typeof(Models.ORIONML));
+            Models.ORIONML orionml;
+            using (XmlTextReader reader = new XmlTextReader(new StringReader(doc.OuterXml)))
+            {
+                orionml = (Models.ORIONML)ser.Deserialize(reader);
+            }
+
+            Models.ORIONMLRESPONSEStationsStation station = orionml.RESPONSE[0].Stations[0];
+
+            //var list = new List<Models.Station>(doc.DocumentElement.GetElementsByTagName("stations").Cast<Models.Station>());
+            
+            //XmlNodeList stations = doc.GetElementsByTagName("station");
+
+
+            return doc;
         }
 
         public static XmlDocument Messages()
