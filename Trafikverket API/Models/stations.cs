@@ -16,13 +16,7 @@ using System.Xml.Serialization;
 namespace Trafikverket_API.Models
 {
 
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    [System.Xml.Serialization.XmlRootAttribute(Namespace = "", IsNullable = false)]
+    [XmlRoot("ORIONML")]
     public partial class ORIONML
     {
 
@@ -59,16 +53,11 @@ namespace Trafikverket_API.Models
         }
     }
 
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
+    [XmlRoot("RESPONSE")]
     public partial class ORIONMLRESPONSE
     {
 
-        private ORIONMLRESPONSEStationsStation[] stationsField;
+        private Station[] stationsField;
 
         private string localeField;
 
@@ -76,8 +65,8 @@ namespace Trafikverket_API.Models
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Station", typeof(ORIONMLRESPONSEStationsStation), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public ORIONMLRESPONSEStationsStation[] Stations
+        [System.Xml.Serialization.XmlArrayItemAttribute("Station", typeof(Station), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        public Station[] Stations
         {
             get
             {
@@ -118,13 +107,8 @@ namespace Trafikverket_API.Models
         }
     }
 
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "2.0.50727.3038")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType = true)]
-    public partial class ORIONMLRESPONSEStationsStation
+    [XmlRoot("Station")]
+    public partial class Station
     {
 
         private string idField;

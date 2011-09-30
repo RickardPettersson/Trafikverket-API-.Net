@@ -41,9 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Get.cs" />
-    <Compile Include="Models\Station.cs" />
     <Compile Include="Models\stations.cs" />
-    <Compile Include="Models\Stations_.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

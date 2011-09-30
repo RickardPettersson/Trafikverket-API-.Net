@@ -6,13 +6,14 @@ using System.Net;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using Trafikverket_API.Models;
 
 namespace Trafikverket_API
 {
     public class Get
     {
 
-        public static XmlDocument Stations()
+        public static List<Station> Stations()
         {
             XmlDocument doc = HttpPost(@"
                             <ORIONML version='1.0'>
@@ -29,14 +30,9 @@ namespace Trafikverket_API
                 orionml = (Models.ORIONML)ser.Deserialize(reader);
             }
 
-            Models.ORIONMLRESPONSEStationsStation station = orionml.RESPONSE[0].Stations[0];
+            List<Station> stations = orionml.RESPONSE[0].Stations.ToList();
 
-            //var list = new List<Models.Station>(doc.DocumentElement.GetElementsByTagName("stations").Cast<Models.Station>());
-            
-            //XmlNodeList stations = doc.GetElementsByTagName("station");
-
-
-            return doc;
+            return stations;
         }
 
         public static XmlDocument Messages()
