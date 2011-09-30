@@ -12,7 +12,10 @@ namespace Trafikverket_API
 {
     public class Get
     {
-
+        /// <summary>
+        /// Get a list of all stations from Trafikverket.se
+        /// </summary>
+        /// <returns>List of Station objects</returns>
         public static List<Station> Stations()
         {
             XmlDocument doc = HttpPost(@"
@@ -23,11 +26,11 @@ namespace Trafikverket_API
                             </ORIONML>");
 
 
-            XmlSerializer ser = new XmlSerializer(typeof(Models.ORIONML));
-            Models.ORIONML orionml;
+            XmlSerializer ser = new XmlSerializer(typeof(Models.stationORIONML));
+            Models.stationORIONML orionml;
             using (XmlTextReader reader = new XmlTextReader(new StringReader(doc.OuterXml)))
             {
-                orionml = (Models.ORIONML)ser.Deserialize(reader);
+                orionml = (Models.stationORIONML)ser.Deserialize(reader);
             }
 
             List<Station> stations = orionml.RESPONSE[0].Stations.ToList();
@@ -35,14 +38,31 @@ namespace Trafikverket_API
             return stations;
         }
 
-        public static XmlDocument Messages()
+        /// <summary>
+        /// Get a list of all messages
+        /// </summary>
+        /// <returns>List of Message objects</returns>
+        public static List<Message> Messages()
         {
-            return HttpPost(@"
+            XmlDocument doc = HttpPost(@"
                             <ORIONML version='1.0'>
                                 <REQUEST plugin='KartDB' locale='SE_sv'>
                                     <PLUGINML table='Messages' />
                                 </REQUEST>
                             </ORIONML>");
+
+            XmlSerializer ser = new XmlSerializer(typeof(Models.messageORIONML));
+            Models.messageORIONML orionml;
+            using (XmlTextReader reader = new XmlTextReader(new StringReader(doc.OuterXml)))
+            {
+                orionml = (Models.messageORIONML)ser.Deserialize(reader);
+            }
+
+            List<Message> messages = orionml.RESPONSE[0].Messages.ToList();
+
+            // TODO: Loop each message and add a list of stations by read the data in "PaverkadePlatser" and match with Station.Signatur
+
+            return messages;
         }
 
         public static XmlDocument Trafikinfo()

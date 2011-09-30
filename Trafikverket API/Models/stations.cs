@@ -17,16 +17,16 @@ namespace Trafikverket_API.Models
 {
 
     [XmlRoot("ORIONML")]
-    public partial class ORIONML
+    public partial class stationORIONML
     {
 
-        private ORIONMLRESPONSE[] rESPONSEField;
+        private stationORIONMLRESPONSE[] rESPONSEField;
 
         private string versionField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("RESPONSE", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public ORIONMLRESPONSE[] RESPONSE
+        public stationORIONMLRESPONSE[] RESPONSE
         {
             get
             {
@@ -54,7 +54,7 @@ namespace Trafikverket_API.Models
     }
 
     [XmlRoot("RESPONSE")]
-    public partial class ORIONMLRESPONSE
+    public partial class stationORIONMLRESPONSE
     {
 
         private Station[] stationsField;
@@ -282,11 +282,11 @@ namespace Trafikverket_API.Models
     public partial class NewDataSet
     {
 
-        private ORIONML[] itemsField;
+        private stationORIONML[] itemsField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("ORIONML")]
-        public ORIONML[] Items
+        public stationORIONML[] Items
         {
             get
             {
