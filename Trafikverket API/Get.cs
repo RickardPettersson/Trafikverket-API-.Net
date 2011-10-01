@@ -65,18 +65,30 @@ namespace Trafikverket_API
             return messages;
         }
 
-        public static XmlDocument Trafikinfo()
+        public static List<Trafiklage> Trafiklage(string TrafikplatsNamn)
         {
-            return HttpPost(@"
-                            <ORIONML version='1.0'>
+            StringBuilder sb = new StringBuilder();
+            sb.Append(@"<ORIONML version='1.0'>
                                 <REQUEST plugin='WOW' version='' locale='SE_sv'>
                                     <PLUGINML
-                                        table='LpvTrafiklagen'
-                                        filter=""TrafikplatsNamn = 'Stockholm C' AND (AnnonseradTidpunktAvgang > datetime('now','localtime','-15 minute') AND (datetime('now','+14 hour') > AnnonseradTidpunktAvgang))""
-                                        orderby=''
-                                        selectcolumns='' />
-                                </REQUEST>
-                            </ORIONML>");
+                                        table='LpvTrafiklagen' ");
+            sb.Append("filter=\"TrafikplatsNamn = '" + TrafikplatsNamn + "'");
+            sb.Append(" AND (AnnonseradTidpunktAvgang > datetime('now','localtime','-15 minute') AND (datetime('now','+14 hour') > AnnonseradTidpunktAvgang))\"");
+            sb.Append(@" orderby='' selectcolumns='' />
+                        </REQUEST>
+                    </ORIONML>");
+            XmlDocument doc = HttpPost(sb.ToString());
+
+            XmlSerializer ser = new XmlSerializer(typeof(Models.trafiklageORIONML));
+            Models.trafiklageORIONML orionml;
+            using (XmlTextReader reader = new XmlTextReader(new StringReader(doc.OuterXml)))
+            {
+                orionml = (Models.trafiklageORIONML)ser.Deserialize(reader);
+            }
+
+            List<Trafiklage> trafiklagen = orionml.RESPONSE[0].LpvTrafiklagen.ToList();
+
+            return trafiklagen;
         }
 
         private static XmlDocument HttpPost(string sendXML)
@@ -92,7 +104,7 @@ namespace Trafikverket_API
                 req.Method = "POST";
                 req.ContentType = "text/xml; encoding='utf-8'";
 
-                byte[] bytes = System.Text.Encoding.ASCII.GetBytes(sendXML);
+                byte[] bytes = System.Text.Encoding.UTF8.GetBytes(sendXML);
                 req.ContentLength = bytes.Length;
                 Stream writer = req.GetRequestStream();
                 writer.Write(bytes, 0, bytes.Length);
