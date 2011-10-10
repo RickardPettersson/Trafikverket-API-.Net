@@ -1,5 +1,5 @@
 
-﻿## C# Class Library för att hämta data från Trafikverkets inofficiella API/Webservice
+﻿# C# Class Library för att hämta data från Trafikverkets inofficiella API/Webservice
 
 Använd denna kod för att antingen skapa en DLL som du sedan inkluderar i dina projekt eller inkludera hela projektet och hämta data från Trafikverkets inofficiella API/Webservice med ditt .Net projekt.
 
