@@ -17,16 +17,16 @@ namespace Trafikverket_API.Models
 {
 
     [XmlRoot("ORIONML")]
-    public partial class trafiklageORIONML
+    public partial class traininfoORIONML
     {
 
-        private trafiklageORIONMLRESPONSE[] rESPONSEField;
+        private traininfoORIONMLRESPONSE[] rESPONSEField;
 
         private string versionField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("RESPONSE", Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public trafiklageORIONMLRESPONSE[] RESPONSE
+        public traininfoORIONMLRESPONSE[] RESPONSE
         {
             get
             {
@@ -54,10 +54,9 @@ namespace Trafikverket_API.Models
     }
 
     [XmlRoot("RESPONSE")]
-    public partial class trafiklageORIONMLRESPONSE
+    public partial class traininfoORIONMLRESPONSE
     {
-
-        private Trafiklage[] lpvTrafiklagenField;
+        private TrainInfo[] lpvTrafiklagenField;
 
         private string localeField;
 
@@ -65,8 +64,8 @@ namespace Trafikverket_API.Models
 
         /// <remarks/>
         [System.Xml.Serialization.XmlArrayAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        [System.Xml.Serialization.XmlArrayItemAttribute("Trafiklage", typeof(Trafiklage), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
-        public Trafiklage[] LpvTrafiklagen
+        [System.Xml.Serialization.XmlArrayItemAttribute("Trafiklage", typeof(TrainInfo), Form = System.Xml.Schema.XmlSchemaForm.Unqualified, IsNullable = false)]
+        public TrainInfo[] LpvTrafiklagen
         {
             get
             {
@@ -108,9 +107,8 @@ namespace Trafikverket_API.Models
     }
 
     [XmlRoot("Trafiklage")]
-    public partial class Trafiklage
+    public partial class TrainInfo
     {
-
         private string utgangsdatumField;
 
         private string tagGruppField;
@@ -139,11 +137,15 @@ namespace Trafikverket_API.Models
 
         private string annonseradTidpunktAnkomstField;
 
+        private string verkligTidpunktAnkomstField;
+
         private string visaAvgangField;
 
         private string installdAvgangField;
 
         private string annonseradTidpunktAvgangField;
+
+        private string verkligTidpunktAvgangField;
 
         private string sparangivelseAvgangField;
 
@@ -171,11 +173,11 @@ namespace Trafikverket_API.Models
 
         private string annonseradAnkomstTidField;
 
+        private string verkligAnkomstTidField;
+
         private string annonseradAvgangTidField;
 
-        private string beraknadTidpunktAnkomstTidField;
-
-        private string beraknadTidpunktAvgangTidField;
+        private string verkligAvgangTidField;
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
@@ -375,6 +377,20 @@ namespace Trafikverket_API.Models
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string VerkligTidpunktAnkomst
+        {
+            get
+            {
+                return this.verkligTidpunktAnkomstField;
+            }
+            set
+            {
+                this.verkligTidpunktAnkomstField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string VisaAvgang
         {
             get
@@ -412,6 +428,20 @@ namespace Trafikverket_API.Models
             set
             {
                 this.annonseradTidpunktAvgangField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string VerkligTidpunktAvgang
+        {
+            get
+            {
+                return this.verkligTidpunktAvgangField;
+            }
+            set
+            {
+                this.verkligTidpunktAvgangField = value;
             }
         }
 
@@ -599,6 +629,20 @@ namespace Trafikverket_API.Models
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public string VerkligAnkomstTid
+        {
+            get
+            {
+                return this.verkligAnkomstTidField;
+            }
+            set
+            {
+                this.verkligAnkomstTidField = value;
+            }
+        }
+
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
         public string AnnonseradAvgangTid
         {
             get
@@ -613,29 +657,15 @@ namespace Trafikverket_API.Models
 
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string BeraknadTidpunktAnkomst
+        public string VerkligAvgangTid
         {
             get
             {
-                return this.beraknadTidpunktAnkomstTidField;
+                return this.verkligAvgangTidField;
             }
             set
             {
-                this.beraknadTidpunktAnkomstTidField = value;
-            }
-        }
-
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Form = System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string BeraknadTidpunktAvgang
-        {
-            get
-            {
-                return this.beraknadTidpunktAvgangTidField;
-            }
-            set
-            {
-                this.beraknadTidpunktAvgangTidField = value;
+                this.verkligAvgangTidField = value;
             }
         }
     }

@@ -91,6 +91,27 @@ namespace Trafikverket_API
             return trafiklagen;
         }
 
+        public static List<TrainInfo> Train(string TagGrupp)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("<ORIONML version=\"1.0\"><REQUEST plugin=\"WOW\" version=\"\" locale=\"SE_sv\"><PLUGINML table=\"LpvTrafiklagen\" ");
+            sb.Append("filter=\"TagGrupp = '" + TagGrupp + "'\" orderby=\"TagGrupp,TagGruppOrdning\" selectcolumns=\"\"></PLUGINML></REQUEST></ORIONML>");
+
+            XmlDocument doc = HttpPost(sb.ToString());
+
+            XmlSerializer ser = new XmlSerializer(typeof(Models.traininfoORIONML));
+            Models.traininfoORIONML orionml;
+            using (XmlTextReader reader = new XmlTextReader(new StringReader(doc.OuterXml)))
+            {
+                orionml = (Models.traininfoORIONML)ser.Deserialize(reader);
+            }
+
+            List<TrainInfo> trafiklagen = orionml.RESPONSE[0].LpvTrafiklagen.ToList();
+
+
+            return trafiklagen;
+        }
+
         private static XmlDocument HttpPost(string sendXML)
         {
             XmlDocument xmldoc = null;

@@ -44,6 +44,7 @@
     <Compile Include="Models\Messages.cs" />
     <Compile Include="Models\Stations.cs" />
     <Compile Include="Models\trafiklage.cs" />
+    <Compile Include="Models\traininfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
