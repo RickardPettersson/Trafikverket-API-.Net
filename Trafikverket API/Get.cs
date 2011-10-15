@@ -65,7 +65,7 @@ namespace Trafikverket_API
             return messages;
         }
 
-        public static List<Trafiklage> Trafiklage(string TrafikplatsNamn)
+        public static List<Trafiklage> Trafiklage(string TrafikplatsNamn, int Status)
         {
             StringBuilder sb = new StringBuilder();
             sb.Append(@"<ORIONML version='1.0'>
@@ -73,7 +73,16 @@ namespace Trafikverket_API
                                     <PLUGINML
                                         table='LpvTrafiklagen' ");
             sb.Append("filter=\"TrafikplatsNamn = '" + TrafikplatsNamn + "'");
-            sb.Append(" AND (AnnonseradTidpunktAvgang > datetime('now','localtime','-15 minute') AND (datetime('now','+14 hour') > AnnonseradTidpunktAvgang))\"");
+
+            if (Status == 1)
+            {
+                sb.Append(" AND ArAnkomstTag = true AND (AnnonseradTidpunktAnkomst > datetime('now','localtime','-0 minute') AND (datetime('now','+14 hour') > AnnonseradTidpunktAnkomst))\"");
+            }
+            else
+            {
+                sb.Append(" AND ArAvgangTag = true AND (AnnonseradTidpunktAvgang > datetime('now','localtime','-0 minute') AND (datetime('now','+14 hour') > AnnonseradTidpunktAvgang))\"");
+            }
+
             sb.Append(@" orderby='' selectcolumns='' />
                         </REQUEST>
                     </ORIONML>");
@@ -88,7 +97,11 @@ namespace Trafikverket_API
 
             List<Trafiklage> trafiklagen = orionml.RESPONSE[0].LpvTrafiklagen.ToList();
 
-            return trafiklagen;
+            List<Trafiklage> result = (from e in trafiklagen
+                                       orderby e.AnnonseradTidpunktAvgang
+                                       select e).ToList();
+
+            return result;
         }
 
         public static List<TrainInfo> Train(string TagGrupp)
